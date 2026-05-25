@@ -95,3 +95,58 @@ Consists on four primary registers:
 - Current Value (SYST_CVR)
 - Calibration Value (SYST_CALIB)
 
+
+### USART Protocol
+
+USART stands for Universal Synchronous/Asynchronous Receiver Transmitter. It is a serial communication peripheral used to exchange data between electronic devices. USART and UART are widely used in embedded systems, allowing microcontrollers and other hardware components to communicate with each other.
+
+Writing a UART driver is an important step for the next stages of this project, since serial communication is commonly used for debugging, logging, and communication between different pieces of hardware.
+
+How does it work?
+
+Before communication can happen, two devices need to establish a connection. UART communication typically requires two wires:
+
+TX (Transmit)
+RX (Receive)
+
+To communicate correctly:
+
+TX1 → RX2
+RX1 → TX2
+
+Both devices must also share a common ground connection to ensure the same electrical reference level.
+
+Data transmitted through UART is organized into frames. A frame usually contains:
+
+1 start bit
+5 to 9 data bits (commonly 8)
+An optional parity bit
+1 or more stop bits
+
+UART communication is asynchronous, meaning both devices do not share a clock signal. Instead, both sides must agree beforehand on communication parameters such as baud rate and frame format.
+
+USART peripherals can also operate in synchronous mode, where an additional clock signal is transmitted alongside the data.
+
+Baud Rate
+
+The baud rate is one of the most important parameters in serial communication. It represents the number of signal changes transmitted per second.
+
+It is important to distinguish baud rate from bit rate.
+
+Baud rate → number of signal changes per second
+Bit rate → number of bits transmitted per second
+
+In UART communication, one signal change usually represents one bit, so baud rate and bit rate are often identical.
+
+The baud rate matters a lot. A common analogy is two people trying to communicate while speaking at very different speeds. One person may send information faster than the other can process it, creating misunderstandings and communication errors.
+
+Electronic devices behave similarly. If two devices are not configured with the same baud rate, data can become corrupted or lost entirely.
+
+Some common baud rates:
+
+300 bps → Very slow, historically used for long-distance communication
+9600 bps → A very common default speed for embedded devices
+19200 bps → Faster communication for applications exchanging more data
+115200 bps → High-speed communication commonly used for debugging and logging on microcontrollers
+
+For this project, USART2 is configured at 115200 baud, allowing debug messages to be sent from the STM32 to a serial terminal running on the computer.
