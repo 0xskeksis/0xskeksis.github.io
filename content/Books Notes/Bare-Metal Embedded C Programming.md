@@ -186,8 +186,3 @@ The two lines are connected to all devices on the bus, with pull-up resistors to
 3. **Acknoledgement (ACK) bit**: The addressed slave responds with an ACK bit bypulling the SDA line low during the next clock pulse. 
 4. **Data frames**: Data is transferred in 8-bit frames. Each byte is followed by an ACK bit from the receiver.
 5. **A stop condition**: The master ends the communication by generating a stop condition, which involves pulling the SDA line high while the SCL line is high.
-
-|Start | Address Frame | R/W | | ACK | Data Frames | ACK | Data Frame | ACK | Stop |
-|-----------------------------------------------------------------------------------
-| 1 bit| 7 to 10 bit   | 1bit| | 1bit|  8 bits     |1bit | 8 bits     | 1bit| 1bit |
- 
